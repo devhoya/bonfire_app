@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Firewood &amp; Memory Burner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee6c2b",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Epilogue"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .paper-texture {
+            background-color: #f4ecd8;
+            background-image: radial-gradient(#d9c9a3 0.5px, transparent 0.5px);
+            background-size: 10px 10px;
+            color: #4a3728;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.1), 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+        .wood-card-selected {
+            border: 2px solid #ee6c2b;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto border-x border-white/5 shadow-2xl">
+<!-- TopAppBar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-50">
+<div class="text-primary flex size-12 shrink-0 items-center cursor-pointer">
+<span class="material-symbols-outlined">arrow_back_ios</span>
+</div>
+<h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Fireplace Setup</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-transparent text-gray-900 dark:text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+<!-- SectionHeader: Firewood Selection -->
+<h2 class="text-gray-900 dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Choose Your Fire</h2>
+<!-- Carousel: Wood Types -->
+<div class="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+<div class="flex items-stretch p-4 gap-4">
+<!-- Selected Wood: Oak -->
+<div class="flex h-full flex-1 flex-col gap-4 rounded-xl min-w-[280px] bg-white/5 p-3 wood-card-selected relative overflow-hidden">
+<div class="absolute top-2 right-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Premium</div>
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex flex-col" data-alt="Close up of aged oak logs stacked" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDIhyeiZ5SpdPYQl0QUWo0KP8swpDm4DTOlgk88akFylanLAJxi1bDxaYVfMOJwMmgJhZ5dSXPjxXibJdo3P6Z3EjB4L0a-yCoEXbnQXPQejusuCwVSF_4Y9w9oWnbOP8Nwi9lxDhmOaJKA32mU94Zyy2ctYwgd_P-7T_0pIXAZz6jVYmPr6Fe0_TOUoswV87lBnsSuuJTHxyr8N4CEm5uqef2SP3u7p2dldwHOmBVVLrjJpuNA1EJAspbkuHpEIe2jqDJmUcGnTfCL");'>
+</div>
+<div>
+<p class="text-white text-xl font-bold leading-normal">Oak</p>
+<p class="text-[#c9a492] text-sm font-normal leading-normal">Sturdy, slow-burning premium hardwood.</p>
+</div>
+</div>
+<!-- Birch -->
+<div class="flex h-full flex-1 flex-col gap-4 rounded-xl min-w-[280px] bg-white/5 p-3">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex flex-col" data-alt="White birch bark logs with silver texture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDnXQvtebLdbgkBOiOrJ2KOZ0YJktroKhAddGMcRqHFhniodJRwRfYlsKF2OZDssRHd47lIkQoEtUvwsz5sW2D_3p5Ik4o1muiduTTSpuqWzEoeLAEuAhIfzRazWdVphj2-6oA6ekYaDZM0jKrVSlMyENc7emVptZHSxmZ3pTq4weI9UYDQ3w0Kkrt7WrgjKynG_VZWBoqlUhe78BWlKzcBlzBpx-KTsXnVh0RsB1TN4O_fQA0EdTxkMHC_j1Py7IyrI_tUY-zbTseu");'>
+</div>
+<div>
+<p class="text-white text-xl font-bold leading-normal">Birch</p>
+<p class="text-[#c9a492] text-sm font-normal leading-normal">Bright, lively flames with sweet aroma.</p>
+</div>
+</div>
+<!-- Pine -->
+<div class="flex h-full flex-1 flex-col gap-4 rounded-xl min-w-[280px] bg-white/5 p-3">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex flex-col" data-alt="Dry pine wood split for fire" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCMvANXZGH1KnBgsREb_bOMxcBHpmD3Wxcccx0DZkDHsiAOB3zMVXUCIBYhHo9eWFx75qxxptd8daMQWvH42Vk8cCykn2j1UguUMNyKyDy_wBcK-po0vLli9IVgOG31NXcFbXzmxX9-N1p3BsMX8z3K11aZHsUKHfTqk4fLiR-R0wjVwZ9fDsNTzLdtR-OW5awXwMVxUtVabaowZX0QXQY_C-UB6F3HRe-447CoeEXnQWPFARmuqd4z6dCQSI5a_jRrjt-juDReAD-I");'>
+</div>
+<div>
+<p class="text-white text-xl font-bold leading-normal">Pine</p>
+<p class="text-[#c9a492] text-sm font-normal leading-normal">High crackle and intense heat spikes.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- HeadlineText: Stats -->
+<h3 class="text-white tracking-light text-lg font-bold leading-tight px-4 text-left pb-2 pt-6">Oak Characteristics</h3>
+<!-- Wood Characteristics List -->
+<div class="flex flex-col gap-1 px-2">
+<!-- Stat 1 -->
+<div class="flex items-center gap-4 bg-transparent px-4 min-h-[64px] py-2 justify-between">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-10">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-white text-sm font-medium leading-normal">Burn Time</p>
+<p class="text-[#c9a492] text-xs font-normal">Superior longevity</p>
+</div>
+</div>
+<div class="shrink-0 flex items-center gap-3">
+<div class="w-[80px] h-1.5 overflow-hidden rounded-full bg-white/10">
+<div class="h-full bg-primary" style="width: 95%;"></div>
+</div>
+<p class="text-white text-xs font-bold">95%</p>
+</div>
+</div>
+<!-- Stat 2 -->
+<div class="flex items-center gap-4 bg-transparent px-4 min-h-[64px] py-2 justify-between">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-10">
+<span class="material-symbols-outlined">volume_up</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-white text-sm font-medium leading-normal">Crackle Intensity</p>
+<p class="text-[#c9a492] text-xs font-normal">Deep, rhythmic snaps</p>
+</div>
+</div>
+<div class="shrink-0 flex items-center gap-3">
+<div class="w-[80px] h-1.5 overflow-hidden rounded-full bg-white/10">
+<div class="h-full bg-primary" style="width: 70%;"></div>
+</div>
+<p class="text-white text-xs font-bold">70%</p>
+</div>
+</div>
+<!-- Stat 3 -->
+<div class="flex items-center gap-4 bg-transparent px-4 min-h-[64px] py-2 justify-between">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-10">
+<span class="material-symbols-outlined">palette</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-white text-sm font-medium leading-normal">Flame Color</p>
+<p class="text-[#c9a492] text-xs font-normal">Deep Amber</p>
+</div>
+</div>
+<div class="shrink-0">
+<div class="size-6 rounded-full bg-gradient-to-tr from-orange-800 to-amber-400 border border-white/20"></div>
+</div>
+</div>
+</div>
+<!-- Memory Burner Section -->
+<div class="mt-8 px-4 pb-12">
+<h3 class="text-white text-xl font-bold mb-4">Burn a Memory</h3>
+<div class="paper-texture rounded-xl p-6 relative overflow-hidden">
+<div class="absolute -top-4 -right-4 w-16 h-16 bg-black/5 rounded-full blur-xl"></div>
+<p class="text-[#5d4a3c] text-sm font-medium italic mb-3">What would you like to let go of?</p>
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-[#4a3728] text-lg font-medium placeholder-[#4a3728]/50 min-h-[120px] p-0 leading-relaxed resize-none" placeholder="Write your thought, regret, or secret here..."></textarea>
+<div class="flex items-center justify-between mt-4 border-t border-[#4a3728]/10 pt-4">
+<button class="flex items-center gap-2 text-[#4a3728] font-semibold text-sm">
+<span class="material-symbols-outlined text-lg">image</span>
+                        Add Photo
+                    </button>
+<div class="size-8 rounded border border-dashed border-[#4a3728]/30 flex items-center justify-center text-[#4a3728]/40">
+<span class="material-symbols-outlined text-sm">close</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl mt-6 flex items-center justify-center gap-3 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">local_fire_department</span>
+                Toss Into Fire
+            </button>
+<p class="text-[#c9a492] text-[10px] text-center mt-3 uppercase tracking-widest opacity-60">Memories burned are deleted forever</p>
+</div>
+<div class="h-10"></div>
+</div>
+</body></html>

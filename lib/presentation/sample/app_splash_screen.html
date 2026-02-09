@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;700&amp;family=Noto+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f48c25",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#120e0a", // Deeper charcoal/black for premium feel
+                    },
+                    fontFamily: {
+                        "display": ["Noto Serif", "serif"],
+                        "sans": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .flame-glow {
+            filter: drop-shadow(0 0 15px rgba(244, 140, 37, 0.6));
+        }
+        .bg-radial-gradient {
+            background: radial-gradient(circle at center, #221910 0%, #120e0a 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<!-- Splash Screen Container -->
+<div class="relative flex h-screen w-full flex-col items-center justify-between overflow-hidden bg-radial-gradient p-8">
+<!-- Top Spacer for iOS Status Bar Area -->
+<div class="h-12"></div>
+<!-- Center Section: Icon and Title -->
+<div class="flex flex-col items-center text-center gap-8">
+<!-- 3D Ember Icon Concept -->
+<div class="relative flex items-center justify-center w-40 h-40">
+<!-- Inner Glow Background -->
+<div class="absolute w-24 h-24 bg-primary/20 rounded-full blur-3xl"></div>
+<!-- Central Flame Icon -->
+<div class="relative z-10 text-primary flame-glow">
+<span class="material-symbols-outlined !text-[80px]" style="font-variation-settings: 'FILL' 1, 'wght' 300;">
+                        local_fire_department
+                    </span>
+</div>
+<!-- Aesthetic Sparks/Embers -->
+<div class="absolute top-4 right-10 w-1.5 h-1.5 bg-primary/60 rounded-full blur-[1px]"></div>
+<div class="absolute bottom-10 left-8 w-1 h-1 bg-primary/40 rounded-full blur-[1px]"></div>
+</div>
+<!-- App Title -->
+<div class="flex flex-col gap-2">
+<h1 class="text-white text-3xl font-light tracking-[0.15em] leading-tight">
+                    IGNITE
+                </h1>
+<p class="text-primary/80 text-sm font-sans tracking-[0.4em] uppercase">
+                    Ember &amp; Memory
+                </p>
+</div>
+</div>
+<!-- Bottom Section: Tagline and Progress -->
+<div class="w-full max-w-xs flex flex-col gap-6 items-center mb-12">
+<!-- Tagline -->
+<p class="text-[#cbad90]/60 text-sm font-sans italic tracking-wide">
+                Burning away the day...
+            </p>
+<!-- Loading Bar -->
+<div class="w-full space-y-3">
+<div class="h-[3px] w-full bg-[#684d31]/30 rounded-full overflow-hidden">
+<!-- Progress Fill with Glow -->
+<div class="h-full bg-primary shadow-[0_0_8px_rgba(244,140,37,0.8)] rounded-full" style="width: 42%;"></div>
+</div>
+<div class="flex justify-between items-center px-1">
+<span class="text-[#684d31] text-[10px] font-sans tracking-widest uppercase">System Warmup</span>
+<span class="text-[#684d31] text-[10px] font-sans tracking-widest uppercase">42%</span>
+</div>
+</div>
+</div>
+<!-- Decorative background elements -->
+<div class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
+<div class="absolute top-1/4 -left-20 w-64 h-64 bg-primary/10 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-1/4 -right-20 w-64 h-64 bg-primary/5 rounded-full blur-[100px]"></div>
+</div>
+</div>
+</body></html>

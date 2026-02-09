@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec80",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102219",
+                    },
+                    fontFamily: {
+                        "display": ["Epilogue", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .emerald-glow {
+            box-shadow: 0 0 50px 10px rgba(19, 236, 128, 0.3);
+        }
+        .inner-glow {
+            box-shadow: inset 0 0 20px rgba(19, 236, 128, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- TopAppBar -->
+<div class="flex items-center p-4 pb-2 justify-between z-10">
+<div class="text-white flex size-12 shrink-0 items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Healing Hearth</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 bg-transparent text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined">info</span>
+</button>
+</div>
+</div>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col items-center justify-center px-6 relative">
+<!-- Central Emerald Flame Image -->
+<div class="w-full max-w-sm aspect-[4/5] relative flex items-center justify-center">
+<!-- Outer Glow Decoration -->
+<div class="absolute inset-0 bg-primary/10 blur-[80px] rounded-full"></div>
+<div class="w-full h-full rounded-xl overflow-hidden emerald-glow relative">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover flex items-end justify-center pb-8" data-alt="A bright calming emerald green flame in a dark fireplace" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCw_QQ76hb3j33yDlxYGi9NsE6h90fWdjlxlDvfLuOqUKuJqifqjmyTtwc2O5TnsYgeuCdUmuL6A8umn_hXCeXpQt2rw9uROi0a4VhmiK6QJ04m8GG3iqNV2i1lOsGXG5jiCfW9132EuGDsYB3iacHwLpwaVXglg6wf2VcatDpyh2SEevo7zEvBOS6G0_MW0ZjpwW3j_kjcesF_Pt8gRgcnTneItM6VYpwxDoQcp19OWgG-loMUPkNIA5iSnRwkN1nKtoTp6Je_lEu2");'>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
+</div>
+</div>
+</div>
+<!-- HeadlineText & BodyText -->
+<div class="mt-8 space-y-2 z-10">
+<h3 class="text-white tracking-light text-3xl font-bold leading-tight px-4 text-center">Your memory has turned into light</h3>
+<p class="text-primary text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">The transformation is complete. Feel the peace of the emerald flame.</p>
+</div>
+<!-- SectionHeader -->
+<div class="mt-12 w-full max-w-md">
+<h4 class="text-white/60 text-xs font-bold leading-normal tracking-[0.2em] px-4 py-2 text-center uppercase">Emotional Flame Colors</h4>
+<!-- Emotional Palette Dock -->
+<div class="flex items-center justify-center gap-6 py-6 overflow-x-auto no-scrollbar">
+<!-- Sadness (Blue) -->
+<div class="flex flex-col items-center gap-2">
+<div class="size-14 rounded-full bg-blue-900/40 border-2 border-blue-500/30 flex items-center justify-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-blue-600/20 blur-md"></div>
+<span class="material-symbols-outlined text-blue-400">lock</span>
+</div>
+<span class="text-white/40 text-[10px] font-bold uppercase tracking-widest">Sadness</span>
+</div>
+<!-- Anger (Red) -->
+<div class="flex flex-col items-center gap-2">
+<div class="size-14 rounded-full bg-red-900/40 border-2 border-red-500/30 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-red-600/20 blur-md"></div>
+<span class="material-symbols-outlined text-red-400">lock</span>
+</div>
+<span class="text-white/40 text-[10px] font-bold uppercase tracking-widest">Anger</span>
+</div>
+<!-- Healing (Active Emerald) -->
+<div class="flex flex-col items-center gap-2">
+<div class="size-16 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center relative inner-glow">
+<div class="absolute inset-0 bg-primary/30 blur-lg"></div>
+<span class="material-symbols-outlined text-primary scale-125">auto_awesome</span>
+</div>
+<span class="text-primary text-[10px] font-bold uppercase tracking-widest">Healing</span>
+</div>
+<!-- Joy (Gold) -->
+<div class="flex flex-col items-center gap-2">
+<div class="size-14 rounded-full bg-amber-900/40 border-2 border-amber-500/30 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-amber-600/20 blur-md"></div>
+<span class="material-symbols-outlined text-amber-400">lock</span>
+</div>
+<span class="text-white/40 text-[10px] font-bold uppercase tracking-widest">Joy</span>
+</div>
+<!-- Peace (White) -->
+<div class="flex flex-col items-center gap-2">
+<div class="size-14 rounded-full bg-slate-800/40 border-2 border-slate-400/30 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-slate-100/10 blur-md"></div>
+<span class="material-symbols-outlined text-slate-400">lock</span>
+</div>
+<span class="text-white/40 text-[10px] font-bold uppercase tracking-widest">Peace</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Action -->
+<div class="p-8 flex flex-col items-center">
+<button class="bg-primary/10 border border-primary/40 text-primary rounded-full px-12 py-4 font-bold text-sm tracking-[0.1em] uppercase hover:bg-primary/20 transition-all">
+                Rest in Presence
+            </button>
+<div class="h-8"></div>
+</div>
+</div>
+</body></html>
