@@ -9,6 +9,8 @@ import '../widgets/timer_display.dart';
 import '../widgets/xp_progress_bar.dart';
 import '../widgets/focus_mode_button.dart';
 import '../widgets/upgrade_button.dart';
+import 'firewood_memory_burner_screen.dart';
+import 'stove_upgrade_store_screen.dart';
 
 class MainFireplaceScreen extends StatelessWidget {
   const MainFireplaceScreen({super.key});
@@ -114,7 +116,14 @@ class MainFireplaceScreen extends StatelessWidget {
                               child: IconButton(
                                 icon: const Icon(Icons.settings),
                                 color: Colors.white,
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => const FirewoodMemoryBurnerScreen(),
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                           ],
@@ -166,6 +175,12 @@ class MainFireplaceScreen extends StatelessWidget {
                                   context.read<SessionBloc>().add(
                                         UpgradeStoveEvent(),
                                       );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => const StoveUpgradeStoreScreen(),
+                                    ),
+                                  );
                                 },
                               ),
                             ),
