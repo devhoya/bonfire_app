@@ -31,7 +31,7 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
     on<UpgradeStoveEvent>(_onUpgradeStove);
 
     // Auto-start session
-    add(StartSessionEvent(const Duration(minutes: 45, seconds: 12)));
+    add(StartSessionEvent(const Duration(minutes: 5)));
   }
 
   Future<void> _onStartSession(

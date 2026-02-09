@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:video_player/video_player.dart';
 import '../bloc/session_bloc.dart';
 import '../bloc/session_event.dart';
 import '../bloc/session_state.dart';
@@ -12,8 +15,55 @@ import '../widgets/upgrade_button.dart';
 import 'firewood_memory_burner_screen.dart';
 import 'stove_upgrade_store_screen.dart';
 
-class MainFireplaceScreen extends StatelessWidget {
+class MainFireplaceScreen extends StatefulWidget {
   const MainFireplaceScreen({super.key});
+
+  @override
+  State<MainFireplaceScreen> createState() => _MainFireplaceScreenState();
+}
+
+class _MainFireplaceScreenState extends State<MainFireplaceScreen> {
+  late final VideoPlayerController _videoController;
+  int _logCount = 0;
+  bool _showLogToast = false;
+  Timer? _logToastTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    _videoController = VideoPlayerController.networkUrl(
+      Uri.parse(
+        'https://cdn.coverr.co/videos/coverr-burning-fireplace-1579/1080p.mp4',
+      ),
+    )..initialize().then((_) {
+        if (!mounted) return;
+        _videoController
+          ..setLooping(true)
+          ..setVolume(0)
+          ..play();
+        setState(() {});
+      });
+  }
+
+  @override
+  void dispose() {
+    _logToastTimer?.cancel();
+    _videoController.dispose();
+    super.dispose();
+  }
+
+  void _addLog() {
+    setState(() {
+      _logCount = (_logCount + 1).clamp(0, 5);
+      _showLogToast = true;
+    });
+
+    _logToastTimer?.cancel();
+    _logToastTimer = Timer(const Duration(milliseconds: 900), () {
+      if (!mounted) return;
+      setState(() => _showLogToast = false);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,28 +82,29 @@ class MainFireplaceScreen extends StatelessWidget {
             final session = state is SessionRunning
                 ? (state as SessionRunning).session
                 : (state as SessionPaused).session;
-            
+
             final level = state is SessionRunning
                 ? (state as SessionRunning).level
                 : (state as SessionPaused).level;
 
             return Stack(
               children: [
-                // Background Image
                 Positioned.fill(
                   child: Stack(
                     children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              'https://lh3.googleusercontent.com/aida-public/AB6AXuD5JA6JLA8dL9U_yRbR8hwqENqWToqFkHx3wmJqD7RIXAEJxqCki4tOmsR4YyPXpnEjZN-dHvzAZFvod_kTvNRhrqXguedAHtH8gEM3Kf09BoGl8SmVOqaQzAVay0Yd6o_mFeuFwjSkfFYnx0bxl_Fl8p-SmUtUYcgaip9ufgHqyMWlx5Da7bkmvsPa_Tgvj3Bf80y64e0BfFkqXUDZCYegDQWyAEXTfSRkkoLJaVNmFn_3-7gLbTMsYPBUcRG9GAIh2AYV2sXby5cG',
-                            ),
+                      if (_videoController.value.isInitialized)
+                        Positioned.fill(
+                          child: FittedBox(
                             fit: BoxFit.cover,
+                            child: SizedBox(
+                              width: _videoController.value.size.width,
+                              height: _videoController.value.size.height,
+                              child: VideoPlayer(_videoController),
+                            ),
                           ),
-                        ),
-                      ),
-                      // Gradient overlays
+                        )
+                      else
+                        Container(color: AppTheme.backgroundDark),
                       Container(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
@@ -72,11 +123,28 @@ class MainFireplaceScreen extends StatelessWidget {
                   ),
                 ),
 
-                // Content
+                if (_logCount > 0)
+                  Positioned(
+                    bottom: 210,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: AnimatedOpacity(
+                        duration: const Duration(milliseconds: 250),
+                        opacity: _showLogToast ? 1 : 0,
+                        child: GlassContainer(
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                            child: Text('장작 +1', style: TextStyle(fontWeight: FontWeight.w600)),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
                 SafeArea(
                   child: Column(
                     children: [
-                      // Top Navigation
                       Padding(
                         padding: const EdgeInsets.all(24),
                         child: Row(
@@ -84,10 +152,7 @@ class MainFireplaceScreen extends StatelessWidget {
                           children: [
                             GlassContainer(
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                  vertical: 8,
-                                ),
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                 child: Row(
                                   children: [
                                     Container(
@@ -129,52 +194,56 @@ class MainFireplaceScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-
                       const Spacer(),
-
-                      // Timer Display
                       TimerDisplay(
                         minutes: session.remainingTime.inMinutes,
                         seconds: session.remainingTime.inSeconds % 60,
                       ),
-
+                      const SizedBox(height: 18),
+                      AnimatedOpacity(
+                        duration: const Duration(milliseconds: 250),
+                        opacity: _logCount == 0 ? 0.55 : 1,
+                        child: Text(
+                          '🪵' * _logCount,
+                          style: const TextStyle(fontSize: 28),
+                        ),
+                      ),
                       const Spacer(),
-
-                      // Bottom UI
                       Padding(
                         padding: const EdgeInsets.all(24),
                         child: Column(
                           children: [
-                            // Focus Mode Button
-                            FocusModeButton(
-                              isActive: session.isFocusMode,
-                              onPressed: () {
-                                context.read<SessionBloc>().add(
-                                      ToggleFocusModeEvent(),
-                                    );
-                              },
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: FocusModeButton(
+                                    isActive: session.isFocusMode,
+                                    onPressed: () {
+                                      context.read<SessionBloc>().add(ToggleFocusModeEvent());
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                FilledButton.icon(
+                                  onPressed: _addLog,
+                                  icon: const Icon(Icons.forest),
+                                  label: const Text('장작 넣기'),
+                                ),
+                              ],
                             ),
-
                             const SizedBox(height: 24),
-
-                            // XP Progress Bar
                             XPProgressBar(
                               currentXP: level.currentXP,
                               requiredXP: level.requiredXP,
                               nextLevel: level.currentLevel + 1,
                               xpPerMinute: level.xpPerMinute,
                             ),
-
                             const SizedBox(height: 24),
-
-                            // Upgrade Button
                             Align(
                               alignment: Alignment.centerRight,
                               child: UpgradeButton(
                                 onPressed: () {
-                                  context.read<SessionBloc>().add(
-                                        UpgradeStoveEvent(),
-                                      );
+                                  context.read<SessionBloc>().add(UpgradeStoveEvent());
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -190,14 +259,12 @@ class MainFireplaceScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-
-                // Vignette effect
                 IgnorePointer(
                   child: Container(
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.8),
+                          color: Colors.black.withOpacity(0.75 - (_logCount * 0.08).clamp(0, 0.35)),
                           blurRadius: 150,
                           spreadRadius: -40,
                           offset: const Offset(0, 0),
