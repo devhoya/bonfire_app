@@ -26,6 +26,7 @@ class _MainFireplaceScreenState extends State<MainFireplaceScreen> {
   late final VideoPlayerController _videoController;
   int _logCount = 0;
   bool _showLogToast = false;
+  bool _videoLoadFailed = false;
   Timer? _logToastTimer;
 
   @override
@@ -42,6 +43,9 @@ class _MainFireplaceScreenState extends State<MainFireplaceScreen> {
           ..setVolume(0)
           ..play();
         setState(() {});
+      }).catchError((_) {
+        if (!mounted) return;
+        setState(() => _videoLoadFailed = true);
       });
   }
 
@@ -105,6 +109,18 @@ class _MainFireplaceScreenState extends State<MainFireplaceScreen> {
                         )
                       else
                         Container(color: AppTheme.backgroundDark),
+                      if (_videoLoadFailed)
+                        const Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: 24,
+                          child: Center(
+                            child: Text(
+                              '배경 영상을 불러오지 못했습니다.',
+                              style: TextStyle(color: Colors.white70),
+                            ),
+                          ),
+                        ),
                       Container(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
